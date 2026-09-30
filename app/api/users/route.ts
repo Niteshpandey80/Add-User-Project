@@ -18,7 +18,7 @@ export async function GET():Promise<NextResponse>{
     } catch (error) {
        return NextResponse.json(
         {
-            message:"Failed to fetch users",
+            message:"Failed to fetch all users",
         },{
             status:500
         }
@@ -34,7 +34,7 @@ export async function POST(request:NextRequest):Promise<NextResponse>{
         if(!name || !email){
             return NextResponse.json(
                 {
-                  message:"Name and email is required", 
+                  message:"Name and email is required Please eneter", 
                 },{
                     status:400, 
                 }
