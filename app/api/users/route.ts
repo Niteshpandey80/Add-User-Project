@@ -28,36 +28,32 @@ export async function GET():Promise<NextResponse>{
 
 export async function POST(request:NextRequest):Promise<NextResponse>{
     try {
-        await connectedDB() ; 
+        await connectedDB();
         const body:CreatedUserRequest = await request.json();
-        const {name ,email} = body ; 
+        const {name , email } = body ; 
         if(!name || !email){
-            return NextResponse.json(
-                {
-                  message:"Name and email is required Please eneter", 
-                },{
-                    status:400, 
-                }
-            );
+            return NextResponse.json({
+                message:"Name and Email that required " , 
+            },{
+                status:400 , 
+            })
         }
         const user = await User.create({
-            name ,  email
-        })
+            name , email
+        });
         return NextResponse.json({
-            message:" User Created Successfully",
-            user,
-        },{
+            message:"User created successfully" , 
+            user
+        } , {
             status:201
         })
-    }  
-    catch (error) {
+    } catch (error) {
         console.log(error);
         return NextResponse.json({
-            message:"Failed to created user ",
-        },{
-            status:500,
+          message:"Failed to create user "
+        } , {
+            status:500
         })
         
     }
-
 }
